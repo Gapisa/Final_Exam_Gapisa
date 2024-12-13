@@ -13,17 +13,6 @@
     state: restarted
     enabled: yes
 
-- name: install monitoring tools prometheus
-  apt:
-    name: prometheus
-    state: present
-
-- name: start and enable prometheus
-  service:
-    name: prometheus
-    state: restarted
-    enabled: yes
-
 - name: Add Elastic GPG Key
   apt_key:
     url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
@@ -39,7 +28,7 @@
     state: present
   become: yes
 
-- name: Install enterprise service of  Kibana
+- name: Install monitoring tool of  Kibana
   apt:
     name: kibana
     state: present
