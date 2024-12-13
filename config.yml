@@ -1,0 +1,13 @@
+---
+
+- name: ubuntu server
+  hosts: ubuntu
+  become: yes
+  roles:
+    - ubuntu_server
+
+- name: Centos server
+  hosts: centos
+  become: yes
+  roles:
+    - centos_server

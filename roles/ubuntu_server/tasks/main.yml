@@ -1,0 +1,52 @@
+---
+
+- name: install apache and php for Ubuntu servers
+  apt:
+    name:
+      - apache2
+      - libapache2-mod-php
+    state: latest
+
+- name: start and enabale apache
+  service:
+    name: apache2
+    state: restarted
+    enabled: yes
+
+- name: install monitoring tools prometheus
+  apt:
+    name: prometheus
+    state: present
+
+- name: start and enable prometheus
+  service:
+    name: prometheus
+    state: restarted
+    enabled: yes
+
+- name: Add Elastic GPG Key
+  apt_key:
+    url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+- name: Install APT Transport
+  apt:
+    name: apt-transport-https
+    state: present
+
+- name: Add Elasticsearch Repo
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+    state: present
+  become: yes
+
+- name: Install enterprise service of  Kibana
+  apt:
+    name: kibana
+    state: present
+    update_cache: yes
+
+- name: Start Kibana
+  service:
+    name: kibana
+    state: started
+    enabled: yes

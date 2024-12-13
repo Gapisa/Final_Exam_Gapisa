@@ -1,0 +1,19 @@
+---
+
+- name: Install httpd and php on centos
+  dnf:
+    name:
+      - httpd
+      - php
+    state: present
+
+- name: start and enable httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes 
+
+- name: Install monitoring prometheus
+  yum:
+    name: prometheus
+    state: present
