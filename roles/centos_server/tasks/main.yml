@@ -13,8 +13,3 @@
     state: started
     enabled: yes
 
-- name: Install monitoring prometheus
-  yum:
-    name: prometheus
-    state: present
-
